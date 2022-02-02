@@ -1,0 +1,26 @@
+{
+  "logger": {
+    "name": "eahw-user-api-DEV",
+    "level": "debug",
+    "toFile": false,
+    "dirLogFile": null,
+    "graylog": {
+      "host": null,
+      "port": null
+    }
+  },
+  "service": {
+    "port": 3100
+  },
+  "auth": {
+    "secret": null,
+    "clientId": null
+  },
+  "mongodb": {
+    "database": "eahw_user_db",
+    "host": "localhost",
+    "port": 27017,
+    "username":null,
+    "password":null
+  }
+}

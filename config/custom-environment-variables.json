@@ -1,0 +1,22 @@
+{
+  "mongodb": {
+    "host": "MONGODB_HOST",
+    "port": "MONGODB_PORT",
+    "username":"MONGODB_USERNAME",
+    "password":"MONGODB_PASSWORD"
+  },
+  "auth": {
+    "secret": "KC_REALM_PUBLIC_KEY",
+    "clientId": "KC_CLIENT_ID"
+  },
+  "service": {
+    "port": "PORT"
+  },
+  "logger": {
+    "level": "LOGGER_LEVEL",
+    "graylog": {
+      "host": "GRAYLOG_HOST",
+      "port": "GRAYLOG_PORT"
+    }
+  }
+}

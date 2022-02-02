@@ -1,0 +1,38 @@
+version: '3.0'
+
+services:
+  mongodb:
+    image: "mongo:4.2"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
+    volumes:
+      - "mongodb_user_data:/data/db"
+    restart: ${RESTART_POLICY}
+  eahw_user:
+    image: eahazardswatch.icpac.net/eahw-user
+    container_name: eahw_user
+    build: .
+    restart: ${RESTART_POLICY}
+    command: bash -c "/wait && yarn start"
+    environment:
+      - WAIT_HOSTS=mongodb:27017
+      - MONGODB_HOST=mongodb
+      - MONGO_URI=mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongodb:27017
+      - MONGODB_USERNAME=${MONGODB_USERNAME}
+      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
+      - MONGODB_PORT=27017
+      - KC_REALM_PUBLIC_KEY=${KC_REALM_PUBLIC_KEY}
+      - KC_CLIENT_ID=${KC_CLIENT_ID}
+      - PORT=3001
+      - LOGGER_LEVEL=${LOGGER_LEVEL}
+      - GRAYLOG_HOST=${GRAYLOG_HOST}
+      - GRAYLOG_PORT=${GRAYLOG_PORT}
+      - NODE_ENV=prod
+    ports:
+      - ${PORT}:3005
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodb_user_data:
