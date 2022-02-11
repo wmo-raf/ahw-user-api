@@ -150,7 +150,7 @@ const init: () => Promise<IInit> = async (): Promise<IInit> => {
                 });
             }
 
-            logger.info(`Connecting to MongoDB URL ${mongoUri}`);
+            logger.info(`Connecting to MongoDB`);
             mongoose.connect(mongoUri, mongooseOptions, onDbReady);
         }
     );
